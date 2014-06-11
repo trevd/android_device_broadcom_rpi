@@ -37,7 +37,7 @@ service fuse_sdcard /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard /
     class late_start
     disabled
 
-# Enable networking so that adb can connect8.7
+# Enable networking so that adb can connect
 service netcfg /system/bin/netcfg eth0 dhcp
     oneshot
     class late_start
@@ -47,7 +47,6 @@ service netcfg /system/bin/netcfg eth0 dhcp
 service pi_console /system/bin/sh
     class late_start
     console
-    stop console
     user root
     group root log
-    seclabel u:r:shell:s0
+

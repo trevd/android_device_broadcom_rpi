@@ -19,7 +19,7 @@ LOCAL_KERNEL := device/rpi/rpi-kernel/kernel
 else
 LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
-TARGET_GLOBAL_CFLAGS += -DBCM_HARDWARE
+
 PRODUCT_COPY_FILES := \
 	$(LOCAL_KERNEL):kernel
 
