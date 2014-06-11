@@ -16,7 +16,7 @@
 
 # Use the non-open-source parts, if they're present
 -include vendor/rpi/rpi/BoardConfigVendor.mk
-
+TARGET_GLOBAL_CFLAGS += -DBCM_HARDWARE
 # Boot Animation
 TARGET_BOOTANIMATION_PRELOAD			:= true
 TARGET_BOOTANIMATION_TEXTURE_CACHE		:= true

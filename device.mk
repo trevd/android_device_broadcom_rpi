@@ -19,7 +19,7 @@ LOCAL_KERNEL := device/rpi/rpi-kernel/kernel
 else
 LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
-
+TARGET_GLOBAL_CFLAGS += -DBCM_HARDWARE
 PRODUCT_COPY_FILES := \
 	$(LOCAL_KERNEL):kernel
 
@@ -57,3 +57,4 @@ PRODUCT_COPY_FILES += \
 $(call inherit-product-if-exists, vendor/rpi/rpi/device-vendor.mk)
 $(call inherit-product, device/rpi/rpi/properties.mk)
 
+$(call inherit-product-if-exists, hardware/broardcom/bcm2708/bcm2708.mk)
