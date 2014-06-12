@@ -45,6 +45,7 @@ service netcfg /system/bin/netcfg eth0 dhcp
 
 
 service pi_console /system/bin/sh
+	disabled
     class late_start
     console
     user root

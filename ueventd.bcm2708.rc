@@ -1,1 +1,12 @@
-/dev/vc*                0666   root       graphics
+# Graphics
+/dev/vc-cma			0660   	system  graphics
+/dev/vc-mem     	0660   	system  graphics
+/dev/vchiq			0660   	system  graphics
+/dev/vchiq			0660   	system	graphics
+/dev/graphics/fb0	0660	system	graphics
+
+# virtual console 
+/dev/vcs			0660	root	shell
+/dev/vcs1			0660	root	shell
+/dev/vcsa			0660	root	shell
+/dev/vcsa1			0660	root	shell

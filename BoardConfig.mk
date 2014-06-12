@@ -32,6 +32,7 @@ TARGET_ARCH_THUMB_VERSION := 1
 TARGET_BOARD_PLATFORM := bcm2708
 
 TARGET_KERNEL_CONFIG := rpi_android_defconfig
+TARGET_KERNEL_SOURCE := kernel/rpi/rpi
 
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_SPARSE_EXT_DISABLED := true
@@ -63,7 +64,4 @@ TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := false
 
 # Enable dalvik startup with a low memory footprint
 TARGET_ARCH_LOWMEM := true
-
-
-
 
