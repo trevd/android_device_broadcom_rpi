@@ -14,20 +14,12 @@
 # limitations under the License.
 #
 
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-LOCAL_KERNEL := device/rpi/rpi-kernel/kernel
-else
-LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
-
-PRODUCT_COPY_FILES := \
-	$(LOCAL_KERNEL):kernel
 
 PRODUCT_COPY_FILES += \
-    device/rpi/rpi/init.bcm2708.rc:root/init.bcm2708.rc \
-    device/rpi/rpi/init.recovery.bcm2708.rc:root/init.recovery.bcm2708.rc \
-    device/rpi/rpi/fstab.bcm2708:root/fstab.bcm2708 \
-    device/rpi/rpi/ueventd.bcm2708.rc:root/ueventd.bcm2708.rc
+	device/broardcom/rpi/init.bcm2708.rc:root/init.bcm2708.rc \
+	device/broardcom/rpi/init.recovery.bcm2708.rc:root/init.recovery.bcm2708.rc \
+	device/broardcom/rpi/fstab.bcm2708:root/fstab.bcm2708 \
+	device/broardcom/rpi/ueventd.bcm2708.rc:root/ueventd.bcm2708.rc
     
     
 PRODUCT_COPY_FILES += \
@@ -46,15 +38,15 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth.xml \
 
 PRODUCT_COPY_FILES += \
-	device/rpi/rpi/audio_policy.conf:system/etc/audio_policy.conf \
-	device/rpi/rpi/mixer_paths.xml:system/etc/mixer_paths.xml
+	device/broardcom/rpi/audio_policy.conf:system/etc/audio_policy.conf \
+	device/broardcom/rpi/mixer_paths.xml:system/etc/mixer_paths.xml
 
     
 PRODUCT_COPY_FILES += \
-	device/rpi/rpi/media_codecs.xml:system/etc/media_codecs.xml \
-	device/rpi/rpi/media_profiles.xml:system/etc/media_profiles.xml
+	device/broardcom/rpi/media_codecs.xml:system/etc/media_codecs.xml \
+	device/broardcom/rpi/media_profiles.xml:system/etc/media_profiles.xml
 
 $(call inherit-product-if-exists, vendor/rpi/rpi/device-vendor.mk)
-$(call inherit-product, device/rpi/rpi/properties.mk)
+$(call inherit-product, device/broardcom/rpi/properties.mk)
 
 $(call inherit-product-if-exists, hardware/broardcom/bcm2708/bcm2708.mk)
