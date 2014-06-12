@@ -1,5 +1,5 @@
 # Inherit device configuration
-$(call inherit-product, device/broardcom/rpi/full_rpi.mk)
+$(call inherit-product, device/broadcom/rpi/full_rpi.mk)
 
 # Inherit some common CM stuff.
 TARGET_SCREEN_HEIGHT := 1080

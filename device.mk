@@ -16,10 +16,10 @@
 
 
 PRODUCT_COPY_FILES += \
-	device/broardcom/rpi/init.bcm2708.rc:root/init.bcm2708.rc \
-	device/broardcom/rpi/init.recovery.bcm2708.rc:root/init.recovery.bcm2708.rc \
-	device/broardcom/rpi/fstab.bcm2708:root/fstab.bcm2708 \
-	device/broardcom/rpi/ueventd.bcm2708.rc:root/ueventd.bcm2708.rc
+	device/broadcom/rpi/init.bcm2708.rc:root/init.bcm2708.rc \
+	device/broadcom/rpi/init.recovery.bcm2708.rc:root/init.recovery.bcm2708.rc \
+	device/broadcom/rpi/fstab.bcm2708:root/fstab.bcm2708 \
+	device/broadcom/rpi/ueventd.bcm2708.rc:root/ueventd.bcm2708.rc
     
     
 PRODUCT_COPY_FILES += \
@@ -38,15 +38,15 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth.xml \
 
 PRODUCT_COPY_FILES += \
-	device/broardcom/rpi/audio_policy.conf:system/etc/audio_policy.conf \
-	device/broardcom/rpi/mixer_paths.xml:system/etc/mixer_paths.xml
+	device/broadcom/rpi/audio_policy.conf:system/etc/audio_policy.conf \
+	device/broadcom/rpi/mixer_paths.xml:system/etc/mixer_paths.xml
 
     
 PRODUCT_COPY_FILES += \
-	device/broardcom/rpi/media_codecs.xml:system/etc/media_codecs.xml \
-	device/broardcom/rpi/media_profiles.xml:system/etc/media_profiles.xml
+	device/broadcom/rpi/media_codecs.xml:system/etc/media_codecs.xml \
+	device/broadcom/rpi/media_profiles.xml:system/etc/media_profiles.xml
 
 $(call inherit-product-if-exists, vendor/rpi/rpi/device-vendor.mk)
-$(call inherit-product, device/broardcom/rpi/properties.mk)
+$(call inherit-product, device/broadcom/rpi/properties.mk)
 
-$(call inherit-product-if-exists, hardware/broardcom/bcm2708/bcm2708.mk)
+$(call inherit-product-if-exists, hardware/broadcom/bcm2708/bcm2708.mk)
