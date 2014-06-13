@@ -46,7 +46,7 @@ PRODUCT_COPY_FILES += \
 	device/broadcom/rpi/media_codecs.xml:system/etc/media_codecs.xml \
 	device/broadcom/rpi/media_profiles.xml:system/etc/media_profiles.xml
 
-$(call inherit-product-if-exists, vendor/rpi/rpi/device-vendor.mk)
+$(call inherit-product-if-exists, vendor/broadcom/rpi/device-vendor.mk)
 $(call inherit-product, device/broadcom/rpi/properties.mk)
 
 $(call inherit-product-if-exists, hardware/broadcom/bcm2708/bcm2708.mk)

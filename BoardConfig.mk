@@ -15,7 +15,7 @@
 #
 
 # Use the non-open-source parts, if they're present
--include vendor/rpi/rpi/BoardConfigVendor.mk
+-include vendor/broadcom/rpi/BoardConfigVendor.mk
 
 # Platform
 
@@ -32,7 +32,7 @@ TARGET_ARCH_THUMB_VERSION := 1
 TARGET_BOARD_PLATFORM := bcm2708
 
 TARGET_KERNEL_CONFIG := rpi_android_defconfig
-TARGET_KERNEL_SOURCE := kernel/rpi/rpi
+TARGET_KERNEL_SOURCE := kernel/broadcom/rpi
 
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_SPARSE_EXT_DISABLED := true
