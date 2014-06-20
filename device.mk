@@ -14,6 +14,10 @@
 # limitations under the License.
 #
 
+ifeq ($(strip $(TARGET_BUILD_VARIANT)),eng)
+	PRODUCT_COPY_FILES += \
+		device/broadcom/rpi/init.rc:root/init.rc
+endif 
 
 PRODUCT_COPY_FILES += \
 	device/broadcom/rpi/init.bcm2708.rc:root/init.bcm2708.rc \

@@ -506,6 +506,7 @@ service netd /system/bin/netd
     socket netd stream 0660 root system
     socket dnsproxyd stream 0660 root inet
     socket mdns stream 0660 root system
+    disabled
 
 service debuggerd /system/bin/debuggerd
     class main
@@ -516,12 +517,14 @@ service ril-daemon /system/bin/rild
     socket rild-debug stream 660 radio system
     user root
     group radio cache inet misc audio sdcard_rw qcom_oncrpc qcom_diag log
+    disabled
 
 service surfaceflinger /system/bin/surfaceflinger
     class main
     user system
     group graphics drmrpc
     onrestart restart zygote
+    disabled
 
 service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-system-server
     class main
@@ -530,17 +533,20 @@ service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-sys
     onrestart write /sys/power/state on
     onrestart restart media
     onrestart restart netd
+    disabled
 
 service drm /system/bin/drmserver
     class main
     user drm
     group drm system inet drmrpc
+    disabled
 
 service media /system/bin/mediaserver
     class main
     user media
     group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc qcom_diag mediadrm
     ioprio rt 4
+    disabled
 
 service bootanim /system/bin/bootanimation
     class main
@@ -552,6 +558,7 @@ service bootanim /system/bin/bootanimation
 service installd /system/bin/installd
     class main
     socket installd stream 600 system system
+    disabled
 
 service racoon /system/bin/racoon
     class main
@@ -573,6 +580,7 @@ service keystore /system/bin/keystore /data/misc/keystore
     class main
     user keystore
     group keystore drmrpc system
+    disabled
 
 service dumpstate /system/bin/dumpstate -s
     class main
