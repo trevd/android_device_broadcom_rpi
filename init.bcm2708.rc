@@ -42,6 +42,17 @@ service netcfg /system/bin/netcfg eth0 dhcp
     oneshot
     class late_start
     restart adbd
+    
+service printip /system/bin/netcfg
+    oneshot
+    disabled
+    console
+    user root
+    group root log
+    class late_start
+    
+on property:init.svc.netcfg=stopped
+	start printip
 
 
 service pi_console /system/bin/sh
