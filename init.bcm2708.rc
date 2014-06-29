@@ -6,12 +6,16 @@ on init
     # See storage config details at http://source.android.com/tech/storage/
     mkdir /mnt/media_rw/sdcard 0700 media_rw media_rw
     mkdir /storage/sdcard 0700 root root
-
     export EXTERNAL_STORAGE /storage/sdcard
 
     # Support legacy paths
     symlink /storage/sdcard /sdcard
     symlink /storage/sdcard /mnt/sdcard
+    
+    
+    # make the bootloader directory to give us easy access to
+    # kernel, cmdline and config updates
+	mkdir /bootloader
 
 on boot
     
@@ -56,8 +60,13 @@ on property:init.svc.netcfg=stopped
 
 
 service pi_console /system/bin/sh
+	stop console
     class late_start
     console
     user root
     group root log
 
+# Stop the standard console as we are running 
+# the pi console as root...
+on property:init.svc.console=running
+	stop console
