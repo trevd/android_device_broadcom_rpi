@@ -1,0 +1,9 @@
+debug.sf.no_hw_vsync=1
+debug.sf.ddms=1
+debug.sf.showupdates=1
+debug.egl.callstack=1
+debug.egl.debug_portname=1
+debug.egl.finish=1
+debug.egl.traceGpuCompletion=1
+debug.egl.debug_proc=0
+debug.egl.trace=1
