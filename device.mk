@@ -50,6 +50,9 @@ PRODUCT_COPY_FILES += \
 	device/broadcom/rpi/media_codecs.xml:system/etc/media_codecs.xml \
 	device/broadcom/rpi/media_profiles.xml:system/etc/media_profiles.xml
 
+PRODUCT_PACKAGES += libwebcore
+
+
 $(call inherit-product-if-exists, vendor/broadcom/rpi/device-vendor.mk)
 $(call inherit-product, device/broadcom/rpi/properties.mk)
 
