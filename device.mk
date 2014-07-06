@@ -20,6 +20,9 @@ ifeq ($(strip $(TARGET_BUILD_VARIANT)),eng)
 endif 
 
 PRODUCT_COPY_FILES += \
+	device/broadcom/rpi/config.txt:bootloader/config.txt
+
+PRODUCT_COPY_FILES += \
 	device/broadcom/rpi/init.bcm2708.rc:root/init.bcm2708.rc \
 	device/broadcom/rpi/init.recovery.bcm2708.rc:root/init.recovery.bcm2708.rc \
 	device/broadcom/rpi/fstab.bcm2708:root/fstab.bcm2708 \
