@@ -27,8 +27,14 @@ TARGET_CPU_VARIANT := arm11
 
 TARGET_ARCH_VARIANT_FPU := vfp
 TARGET_ARCH_VARIANT_CPU	:= arm1176jzf-s
-# The arm1176jzf-s only supports Thumb-1.
+
+# A number of modules contain optimized thumb-2 assembly instructions 
+# we need to build these modules in arm mode as the arm1176jzf-s only 
+# supports Thumb-1. Setting TARGET_ARCH_THUMB_VERSION = 1 turns on
+# arm mode for all binaries. see build/core/binary.mk 
 TARGET_ARCH_THUMB_VERSION := 1
+
+# bcm2835
 TARGET_BOARD_PLATFORM := bcm2708
 
 TARGET_KERNEL_CONFIG := rpi_android_defconfig
@@ -61,12 +67,12 @@ ifeq ($(strip $(TARGET_BUILD_VARIANT)),eng)
 	#BOARD_NO_PAGE_FLIPPING := true
 	
 	#COMMON_GLOBAL_CFLAGS += -DNO_RGBX_8888
-	COMMON_GLOBAL_CFLAGS += -DEGL_NEEDS_FNW
-	COMMON_GLOBAL_CFLAGS += -DBCM_HARDWARE
-	TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
-	TARGET_DISABLE_TRIPLE_BUFFERING := true
+	#COMMON_GLOBAL_CFLAGS += -DEGL_NEEDS_FNW
+	#COMMON_GLOBAL_CFLAGS += -DBCM_HARDWARE
+	#TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
+	#TARGET_DISABLE_TRIPLE_BUFFERING := true
 	TARGET_PROVIDES_INIT_RC := true
-	TARGET_DOESNT_USE_FENCE_SYNC := true
+	#TARGET_DOESNT_USE_FENCE_SYNC := true
 	
 endif
 
@@ -78,4 +84,17 @@ BOARD_USES_GENERIC_INVENSENSE := false
 
 # Enable dalvik startup with a low memory footprint
 TARGET_ARCH_LOWMEM := true
+
+
+# Bootloader partition config settings variables
+
+BOARD_KERNEL_CMDLINE := sdhci-bcm2708.sync_after_dma=0 dwc_otg.lpm_enable=0 console=tty1 rootwait
+
+BOARD_GPU_MEMSIZE := 256
+TARGET_SCREEN_WIDTH := 1920
+TARGET_SCREEN_HEIGHT := 1920
+TARGET_SCREEN_DEPTH := 32
+
+TARGET_RECOVERY_FSTAB := device/broadcom/rpi/fstab.bcm2708
+
 
