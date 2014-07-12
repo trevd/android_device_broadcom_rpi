@@ -45,7 +45,7 @@ service fuse_sdcard /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard /
 service netcfg /system/bin/netcfg eth0 dhcp
     oneshot
     class late_start
-    restart adbd
+    
     
 service printip /system/bin/netcfg
     oneshot
@@ -57,10 +57,10 @@ service printip /system/bin/netcfg
     
 on property:init.svc.netcfg=stopped
 	start printip
+	
 
 
 service pi_console /system/bin/sh
-	stop console
     class late_start
     console
     user root
