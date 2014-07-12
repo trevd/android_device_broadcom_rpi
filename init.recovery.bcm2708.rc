@@ -3,15 +3,11 @@ on early-init
     mount debugfs debugfs /sys/kernel/debug
 
 on init
-    # See storage config details at http://source.android.com/tech/storage/
-    mkdir /mnt/media_rw/sdcard 0700 media_rw media_rw
-    mkdir /storage/sdcard 0700 root root
 
-    export EXTERNAL_STORAGE /storage/sdcard
-
-    # Support legacy paths
-    symlink /storage/sdcard /sdcard
-    symlink /storage/sdcard /mnt/sdcard
+    loglevel 7
+    # make the bootloader directory to give us easy access to
+    # kernel, cmdline and config updates
+	mkdir /bootloader
 
 on boot
     
@@ -25,59 +21,48 @@ on boot
 # like NetworkLocationProvider and LocationCollector
     setprop ro.com.google.locationfeatures 1
 
-# For the emulator, which bypasses Setup Wizard, you can specify
-# account info for the device via these two properties.  Google
-# Login Service will insert these accounts into the database when
-# it is created (ie, after a data wipe).
-#
-#   setprop ro.config.hosted_account username@hosteddomain.org:password
-#   setprop ro.config.google_account username@gmail.com:password
-#
-# You MUST have a Google account on the device, and you MAY
-# additionally have a hosted account.  No other configuration is
-# supported, and arbitrary breakage may result if you specify
-# something else.
-
 on fs
-        #mount_all /fstab.bcm2708
-        #swapon_all  /fstab.bcm2708
 
-#service goldfish-setup /system/etc/init.goldfish.sh
-#    user root
-#    group root
-#    oneshot
+    mount ext4 /dev/block/mmcblk0p2 /system
 
-# The qemu-props program is used to set various system
-# properties on boot. It must be run early during the boot
-# process to avoid race conditions with other daemons that
-# might read them (e.g. surface flinger), so define it in
-# class 'core'
-#
-#service qemu-props /system/bin/qemu-props
-#    class core
-#   user root
-#   group root
-#    oneshot
-
-
-#service  /system/bin/qemud
-#    socket qemud    stream 666
-#    oneshot
-
-# -Q is a special logcat option that forces the
-# program to check wether it runs on the emulator
-# if it does, it redirects its output to the device
-# named by the androidboot.console kernel option
-# if not, is simply exits immediately
-
-# fusewrapped external sdcard daemon running as media_rw (1023)
-service fuse_sdcard /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard /storage/sdcard
-	oneshot
-    class late_start
-    disabled
+on post-fs
+    start pi_console
+    start netcfg
 
 # Enable networking so that adb can connect
-service netcfg /sbin/netcfg eth0 dhcp
+service netcfg /system/bin/netcfg eth0 dhcp
+    disabled
     oneshot
-    class late_start
-    restart adbd
+    
+    
+service printip /system/bin/netcfg
+    oneshot
+    disabled
+    console
+    user root
+    group root log
+    
+on property:init.svc.netcfg=stopped
+	start printip
+	
+
+
+service pi_console /system/bin/sh
+    console
+    disable
+    user root
+    group root log
+
+# Stop the standard console as we are running 
+# the pi console as root...
+on property:init.svc.console=running
+	stop console
+
+
+# adb over network
+on property:service.adb.tcp.port=5555
+    stop adbd
+    start adbd
+on property:service.adb.tcp.port=-1
+    stop adbd
+    start adbd
