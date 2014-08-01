@@ -73,4 +73,9 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
     service.adb.root=1 \
     service.adb.tcp.port=5555 \
     persist.sys.root_access=3
-#endif
+
+# The RaspberryPI kernel doesn't support Android's netfilter yet
+# So we will turn off netd's Bandwidth control for now 
+ADDITIONAL_DEFAULT_PROPERTIES += \ 
+    persist.bandwidth.enable=0
+
