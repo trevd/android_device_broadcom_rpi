@@ -33,9 +33,7 @@ on fs
         mount_all /fstab.bcm2708
         swapon_all  /fstab.bcm2708
     
-	symlink /vendor/lib/egl/libEGL_bcm2708.so /vendor/lib/egl/libGLESv2_bcm2708.so
-    symlink /vendor/lib/egl/libEGL_bcm2708.so /vendor/lib/egl/libGLES_bcm2708.so
-
+	
 # fusewrapped external sdcard daemon running as media_rw (1023)
 service fuse_sdcard /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard /storage/sdcard
     class late_start
