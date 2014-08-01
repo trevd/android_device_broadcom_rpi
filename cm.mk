@@ -9,5 +9,5 @@ $(call inherit-product-if-exists, vendor/cm/config/common_full_tablet_wifionly.m
 # Overrides
 PRODUCT_NAME := cm_rpi
 
-PRODUCT_CHARACTERISTICS := tablet
+
 
