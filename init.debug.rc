@@ -4,6 +4,11 @@
 # This is a common source of Android security bugs.
 #
 
+#
+#
+# Use this init.rc file for early device bring-up
+# All services are disabled by default
+#
 import /init.environ.rc
 import /init.usb.rc
 import /init.${ro.hardware}.rc
