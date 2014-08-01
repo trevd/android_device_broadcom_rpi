@@ -14,10 +14,10 @@
 # limitations under the License.
 #
 
-ifeq ($(strip $(TARGET_BUILD_VARIANT)),eng)
-	PRODUCT_COPY_FILES += \
-		device/broadcom/rpi/init.rc:root/init.rc
-endif 
+#ifeq ($(strip $(TARGET_BUILD_VARIANT)),eng)
+#	PRODUCT_COPY_FILES += \
+#		device/broadcom/rpi/init.rc:root/init.rc
+#endif 
 
 PRODUCT_COPY_FILES += \
 	device/broadcom/rpi/config.txt:bootloader/config.txt
