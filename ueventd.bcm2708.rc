@@ -1,8 +1,7 @@
 # Graphics
-/dev/vc-cma			0660   	system  graphics
-/dev/vc-mem     	0660   	system  graphics
-/dev/vchiq			0660   	system  graphics
-/dev/vchiq			0660   	system	graphics
+/dev/vc-cma		0666   	system  graphics
+/dev/vc-mem     	0666   	system  graphics
+/dev/vchiq		0666   	system  graphics
 /dev/graphics/fb0	0660	system	graphics
 
 # virtual console 

@@ -1,18 +1,18 @@
 #
-# Copyright 2013 The Android Open-Source Project
+# Copyright (C) 2014 Trevor Drake <trevd1234@gmail.com>
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 #
-#      http://www.apache.org/licenses/LICENSE-2.0
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # Properties - 
 # PRODUCT_PROPERTY_OVERRIDES will be added to /system/build.prop
@@ -33,7 +33,8 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapstartsize=5m \
     dalvik.vm.heapgrowthlimit=48m \
-    dalvik.vm.heapsize=256m
+    dalvik.vm.heapsize=192m \
+    dalvik.vm.heapmaxfree=2m
 
 # Dalvik vm
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -55,14 +56,20 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.config.low_ram=true \
 	
 	
-# OpenGLES 3.0 Magic Number
+# OpenGLES 2.0 Magic Number
+# Broadcom libEGL doesn't play well with zygote's gl_preload
+# so disable it for now
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=131072 \
-    ro.bq.gpu_to_cpu_unsupported=1 \
+    ro.zygote.disable_gl_preload=true \
+	debug.sf.no_hw_vsync=1 \
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	hwui.render_dirty_regions=false
+	hwui.render_dirty_regions=true
+	
 
+
+	
 #ifeq ($(TARGET_BUILD_TYPE),debug)
 # relax the security only if the target type is debug. 
 # Note this is set as release if lunch is used for target selection
@@ -76,7 +83,9 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 
 # The RaspberryPI kernel doesn't support Android's netfilter yet
 # So we will turn off netd's Bandwidth control for now 
-ADDITIONAL_DEFAULT_PROPERTIES += \ 
-    persist.bandwidth.enable=0
+ADDITIONAL_DEFAULT_PROPERTIES += \
+	persist.bandwidth.enable=0 \
+	drm.service.enabled=false
+	
 
-PRODUCT_CHARACTERISTICS := tablet,nosdcard
+
