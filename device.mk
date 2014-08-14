@@ -14,10 +14,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifeq ($(strip $(TARGET_BUILD_VARIANT)),eng)
-#	PRODUCT_COPY_FILES += \
-#		device/broadcom/rpi/init.rc:root/init.rc
-#endif 
+ifeq ($(TARGET_PROVIDES_INIT_RC),true)
+	PRODUCT_COPY_FILES += \
+		device/broadcom/rpi/init.debug.rc:root/init.rc
+endif 
 
 PRODUCT_COPY_FILES += \
 	device/broadcom/rpi/config.txt:bootloader/config.txt
@@ -46,7 +46,8 @@ PRODUCT_COPY_FILES += \
 	device/broadcom/rpi/media_codecs.xml:system/etc/media_codecs.xml \
 	device/broadcom/rpi/media_profiles.xml:system/etc/media_profiles.xml
 
-PRODUCT_PACKAGES += libwebcore
+PRODUCT_PACKAGES += libwebcore \
+	Launcher2
 
 
 $(call inherit-product-if-exists, vendor/broadcom/rpi/device-vendor.mk)
