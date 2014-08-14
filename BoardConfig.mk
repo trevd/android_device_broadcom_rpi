@@ -72,7 +72,7 @@ ifeq ($(strip $(TARGET_BUILD_VARIANT)),eng)
 	COMMON_GLOBAL_CFLAGS += -DEGL_NEEDS_FNW
 	COMMON_GLOBAL_CFLAGS += -DHAS_CONTEXT_PRIORITY
 	TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
-	TARGET_DISABLE_TRIPLE_BUFFERING := true
+	#TARGET_DISABLE_TRIPLE_BUFFERING := true
 	TARGET_DOESNT_USE_FENCE_SYNC := true
 	
 endif
@@ -89,7 +89,7 @@ TARGET_ARCH_LOWMEM := true
 
 # Bootloader partition config settings variables
 
-BOARD_KERNEL_CMDLINE := sdhci-bcm2708.sync_after_dma=0 dwc_otg.lpm_enable=0 console=tty1 rootwait
+BOARD_KERNEL_CMDLINE := sdhci-bcm2708.sync_after_dma=0 dwc_otg.lpm_enable=0 console=tty1 rootwait androidboot.carrier=wifi-only
 
 BOARD_GPU_MEMSIZE := 256
 TARGET_SCREEN_WIDTH := 1920
