@@ -67,8 +67,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	hwui.render_dirty_regions=true
 	
-
-
 	
 #ifeq ($(TARGET_BUILD_TYPE),debug)
 # relax the security only if the target type is debug. 
@@ -85,7 +83,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 # So we will turn off netd's Bandwidth control for now 
 ADDITIONAL_DEFAULT_PROPERTIES += \
 	persist.bandwidth.enable=0 \
-	drm.service.enabled=false
-	
+	drm.service.enabled=false \
+	ro.carrier=wifi-only
 
 
