@@ -30,8 +30,8 @@ on init
     
     # make the bootloader directory to give us easy access to
     # kernel, cmdline and config updates
-	mkdir /bootloader
-
+    mkdir /bootloader
+    chmod 0660 /dev/cpuctl
 on boot
     
 # fake some battery state
