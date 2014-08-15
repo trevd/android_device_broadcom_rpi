@@ -31,6 +31,7 @@ on init
     # make the bootloader directory to give us easy access to
     # kernel, cmdline and config updates
     mkdir /bootloader
+    mkdir /system/vendor/bin 0755 root shell
     chmod 0660 /dev/cpuctl
 on boot
     
@@ -42,7 +43,7 @@ on boot
 
 # enable Google-specific location features,
 # like NetworkLocationProvider and LocationCollector
-    setprop ro.com.google.locationfeatures 1
+    setprop ro.com.google.locationfeatures 0
 
 on fs
         mount_all /fstab.bcm2708
@@ -54,7 +55,7 @@ on post-fs-data
 # fusewrapped external sdcard daemon running as media_rw (1023)
 service fuse_sdcard /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard /storage/sdcard
     class late_start
-    disabled
+
 
 # Enable networking so that adb can connect
 service netcfg /system/bin/netcfg eth0 dhcp
