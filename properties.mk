@@ -84,6 +84,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 ADDITIONAL_DEFAULT_PROPERTIES += \
 	persist.bandwidth.enable=0 \
 	drm.service.enabled=false \
-	ro.carrier=wifi-only
+	ro.carrier=wifi-only \
+	ro.radio.noril=true
 
 
