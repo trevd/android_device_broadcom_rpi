@@ -31,7 +31,6 @@ on init
     # make the bootloader directory to give us easy access to
     # kernel, cmdline and config updates
     mkdir /bootloader
-    mkdir /system/vendor/bin 0755 root shell
     chmod 0660 /dev/cpuctl
 on boot
     
@@ -51,6 +50,7 @@ on fs
     
 on post-fs-data
     mkdir /data/media 0770 media_rw media_rw
+    mkdir /system/vendor/bin 0755 root shell
     	
 # fusewrapped external sdcard daemon running as media_rw (1023)
 service fuse_sdcard /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard /storage/sdcard
