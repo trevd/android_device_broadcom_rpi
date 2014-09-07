@@ -32,20 +32,29 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 # Dalvik Heap Sizes
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapstartsize=5m \
-    dalvik.vm.heapgrowthlimit=48m \
-    dalvik.vm.heapsize=192m \
+    dalvik.vm.heapsize=32m \
+    dalvik.vm.heaptargetutilization=0.75 \
+    dalvik.vm.heapminfree=512k \
     dalvik.vm.heapmaxfree=2m
 
-# Dalvik vm
+# Dalvik execution-mode vm
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.execution-mode=int:fast \
-    ro.kernel.android.checkjni=false \
-    dalvik.vm.checkjni=false \
-
+    dalvik.vm.jit.codecachesize=0
+   
 # wifi settings
 PRODUCT_PROPERTY_OVERRIDES += \
-    wifi.interface=wlan0 \
-    wifi.supplicant_scan_interval=150
+    wifi.interface=eth0 \
+    wifi.supplicant_scan_interval=0
+    
+# Extended JNI checks
+# The extended JNI checks will cause the system to run more slowly, but they can spot a variety of nasty bugs 
+# before they have a chance to cause problems.
+# Default=true for development builds, set by android buildsystem.
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.checkjni=false \
+    ro.kernel.android.checkjni=0 \
+    
     
 # Tablet Mode
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -53,19 +62,23 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # LowRam Settings for 512MB
 PRODUCT_PROPERTY_OVERRIDES += \
+	persist.sys.disable_zram=1 \
 	ro.config.low_ram=true \
 	
 	
-# OpenGLES 2.0 Magic Number
+# Graphics Properties OpenGLES 2.0 Magic Number
 # Broadcom libEGL doesn't play well with zygote's gl_preload
 # so disable it for now
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=131072 \
     ro.zygote.disable_gl_preload=true \
-	debug.sf.no_hw_vsync=1 \
+    debug.hwui.render_dirty_regions=false \
+    debug.sf.no_hw_vsync=1 \
+    persist.sys.prefer_16bpp=1 \
+    ro.hwui.layer_cache_size=0 \
+    ro.opengles.surface.rgba8888=true \
+    ro.systemui.use_gl_wallpaper=0 \
 
-PRODUCT_PROPERTY_OVERRIDES += \
-	hwui.render_dirty_regions=true
 	
 	
 #ifeq ($(TARGET_BUILD_TYPE),debug)
@@ -87,4 +100,6 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 	ro.carrier=wifi-only \
 	ro.radio.noril=true
 
-
+# Webkit (classic webview provider)
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.webview.provider=classic
