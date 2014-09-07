@@ -28,13 +28,6 @@ TARGET_CPU_VARIANT := arm11
 TARGET_ARCH_VARIANT_FPU := vfp
 TARGET_ARCH_VARIANT_CPU	:= arm1176jzf-s
 
-# A number of modules contain optimized thumb-2 assembly instructions 
-# we need to build these modules in arm mode as the arm1176jzf-s only 
-# supports Thumb-1. Setting TARGET_ARCH_THUMB_VERSION = 1 turns on
-# arm mode for all binaries. see build/core/binary.mk 
-TARGET_ARCH_THUMB_VERSION := 1
-
-# bcm2835
 TARGET_BOARD_PLATFORM := bcm2708
 
 TARGET_KERNEL_CONFIG := rpi_android_defconfig
