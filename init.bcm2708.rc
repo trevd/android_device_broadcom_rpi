@@ -74,7 +74,14 @@ service printip /system/bin/netcfg
 on property:init.svc.netcfg=stopped
 	start printip
 	
-
+# create filesystems if necessary
+service setup_fs /system/bin/setup_fs \
+        /dev/block/mmcblk0p3 \
+        /dev/block/mmcblk0p4 \
+    class core
+    user root
+    group root
+    oneshot
 
 service pi_console /system/bin/sh
     class late_start
